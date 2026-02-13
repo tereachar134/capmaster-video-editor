@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CapMaster Studio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-dot"></span>
+          <h1>CapMaster Studio</h1>
+        </div>
+        <div class="topbar-actions">
+          <button id="addClipBtn" class="btn btn-primary">+ Add Clip</button>
+          <button id="exportBtn" class="btn">Export</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="panel media-panel">
+          <h2>Media</h2>
+          <p class="panel-subtitle">Tap to send media to timeline.</p>
+          <ul id="mediaList" class="media-list"></ul>
+        </aside>
+
+        <section class="preview-column">
+          <section class="preview panel">
+            <div id="previewFrame" class="preview-frame">
+              <h2 id="previewTitle">Select a clip</h2>
+              <p id="previewMeta">No clip selected</p>
+            </div>
+            <div class="playback-controls">
+              <button id="playPauseBtn" class="btn">Play</button>
+              <div class="timecode-wrap">
+                <input id="playheadInput" type="range" min="0" max="300" value="0" />
+                <div class="timecodes">
+                  <span id="currentTime">00:00</span>
+                  <span id="totalTime">05:00</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="timeline panel">
+            <div class="timeline-header">
+              <h2>Timeline</h2>
+              <span id="timelineHint">Drag clip handles to trim</span>
+            </div>
+            <div id="timelineTrack" class="timeline-track"></div>
+          </section>
+        </section>
+
+        <aside class="panel inspector-panel">
+          <h2>Inspector</h2>
+          <div id="inspectorEmpty" class="inspector-empty">Select a timeline clip to edit.</div>
+
+          <form id="inspectorForm" class="inspector-form hidden">
+            <label>
+              Clip Name
+              <input id="clipNameInput" type="text" />
+            </label>
+
+            <label>
+              Speed
+              <input id="clipSpeedInput" type="range" min="0.25" max="2" step="0.05" value="1" />
+              <output id="clipSpeedOut">1.00x</output>
+            </label>
+
+            <label>
+              Volume
+              <input id="clipVolumeInput" type="range" min="0" max="100" step="1" value="80" />
+              <output id="clipVolumeOut">80%</output>
+            </label>
+
+            <button type="submit" class="btn btn-primary">Apply Changes</button>
+          </form>
+        </aside>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

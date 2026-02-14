@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CapMaster Studio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar" aria-label="Top toolbar">
+        <div class="brand">
+          <span class="brand-dot" aria-hidden="true"></span>
+          <div>
+            <h1>CapMaster Studio</h1>
+            <p class="brand-subtitle">Professional Short-Form Timeline Editor</p>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <button id="addClipBtn" class="btn btn-primary">+ Add Clip</button>
+          <button id="duplicateClipBtn" class="btn">Duplicate</button>
+          <button id="exportBtn" class="btn">Export</button>
+        </div>
+      </header>
+
+      <main class="workspace">
+        <aside class="panel media-panel">
+          <h2>Media Library</h2>
+          <p class="panel-subtitle">Select assets and send to timeline.</p>
+          <ul id="mediaList" class="media-list"></ul>
+
+          <div class="panel-section">
+            <h3>Project Summary</h3>
+            <dl class="stats-grid">
+              <div>
+                <dt>Clips</dt>
+                <dd id="statClips">0</dd>
+              </div>
+              <div>
+                <dt>Duration</dt>
+                <dd id="statDuration">00:00</dd>
+              </div>
+              <div>
+                <dt>Avg Speed</dt>
+                <dd id="statSpeed">1.00x</dd>
+              </div>
+              <div>
+                <dt>Muted</dt>
+                <dd id="statMuted">0</dd>
+              </div>
+            </dl>
+          </div>
+        </aside>
+
+        <section class="preview-column">
+          <section class="preview panel">
+            <div id="previewFrame" class="preview-frame">
+              <h2 id="previewTitle">Select a clip</h2>
+              <p id="previewMeta">No clip selected</p>
+              <p id="previewDetails" class="preview-details">Tip: Select a clip to edit speed, volume, and trim points.</p>
+            </div>
+
+            <div class="playback-controls">
+              <button id="playPauseBtn" class="btn">Play</button>
+              <button id="rewindBtn" class="btn btn-icon" aria-label="Rewind 2 seconds">⟲</button>
+              <button id="forwardBtn" class="btn btn-icon" aria-label="Forward 2 seconds">⟳</button>
+
+              <div class="timecode-wrap">
+                <input id="playheadInput" type="range" min="0" max="300" step="0.1" value="0" />
+                <div class="timecodes">
+                  <span id="currentTime">00:00</span>
+                  <span id="totalTime">05:00</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="timeline panel">
+            <div class="timeline-header">
+              <h2>Timeline</h2>
+              <div class="timeline-controls">
+                <label>
+                  Zoom
+                  <input id="zoomInput" type="range" min="7" max="18" value="11" />
+                </label>
+                <label class="toggle-wrap">
+                  <input id="snapToggle" type="checkbox" checked />
+                  Snap
+                </label>
+              </div>
+            </div>
+
+            <div class="track-labels">
+              <span>V1</span>
+              <span>A1</span>
+            </div>
+
+            <div id="timelineTrack" class="timeline-track" aria-label="Timeline track"></div>
+          </section>
+
+          <section class="statusbar panel" aria-label="Status bar">
+            <span id="statusMessage">Ready.</span>
+            <span id="selectedSummary">No clip selected.</span>
+          </section>
+        </section>
+
+        <aside class="panel inspector-panel">
+          <h2>Inspector</h2>
+          <div id="inspectorEmpty" class="inspector-empty">Select a timeline clip to edit.</div>
+
+          <form id="inspectorForm" class="inspector-form hidden">
+            <label>
+              Clip Name
+              <input id="clipNameInput" type="text" />
+            </label>
+
+            <label>
+              Speed
+              <input id="clipSpeedInput" type="range" min="0.25" max="2" step="0.05" value="1" />
+              <output id="clipSpeedOut">1.00x</output>
+            </label>
+
+            <label>
+              Volume
+              <input id="clipVolumeInput" type="range" min="0" max="100" step="1" value="80" />
+              <output id="clipVolumeOut">80%</output>
+            </label>
+
+            <label class="toggle-wrap">
+              <input id="clipMuteInput" type="checkbox" />
+              Mute Clip
+            </label>
+
+            <label>
+              Notes
+              <textarea id="clipNotesInput" rows="3" placeholder="Add editing note (optional)"></textarea>
+            </label>
+
+            <button type="submit" class="btn btn-primary">Apply Changes</button>
+          </form>
+        </aside>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
